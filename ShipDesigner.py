@@ -67,8 +67,8 @@ def update():
         if (parts[i][0]) == "C":
             for j in range(len(all[i][0])):
                 if all[i][3][j].get() == True and all[i][0][j]['text'] == "Spaced Plating":
-                    space_used += int(all[13][3][0].get()/4)
-                    hullpoints += int(all[13][3][0].get()/2)
+                    space_used += int(int(all[13][3][0].get())/4)
+                    hullpoints += int(int(all[13][3][0].get())/2)
                 elif all[i][3][j].get() == True:
                     space_used += int(all[i][1][j]['text'])
                     power_used += int(all[i][2][j]['text'])
