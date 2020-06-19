@@ -1,3 +1,4 @@
+from math import floor
 from tkinter import *
 
 from tkinter.ttk import *
@@ -5,6 +6,8 @@ from tkinter.ttk import *
 window = Tk()
 window.geometry('1280x720')
 window.title("Ship Designer")
+
+# N = Normal, R = Radialbuttons, C = Checkboxes
 
 parts = [
     ["N", "Reactor", ["Battery Pack", 1, 2], ["Mini", 10, 10], ["Default", 25, 50], ["Mega", 50, 150]],
@@ -15,7 +18,7 @@ parts = [
     ["N", "FTL", ["Jumpdrive", 8, 10]],
     ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2]],
     ["N", "Artillery"],
-    ["N", "Sniper", ["Skirmish Autocannons", 3, 1]],
+    ["N", "Sniper", ["Skirmish Autocannons", 3, 1, 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["N", "Brawler", ["Autocannons", 2, 0], ["High Impact Cannons", 3, 0], ["Artillery", 4, 0], ["Heavy Artillery cannon", 5, 0]],
     ["N", "Ordenance", ["Ordnance launcher", 3, 0], ["Ordnance Locker", 1, 0]],
     ["N", "Carrier", ["Open Hangar", 5, 0], ["Launch tubes", 5, 2], ["Flight Pod", 20, 0]],
@@ -23,15 +26,40 @@ parts = [
     ["N", "Armour", ["Armour Plating", 1, 0]],
     ["N", "Umbrella", ["Point Defense", 1, 0], ["Sprint missiles", 2, 0]],
     ["N", "Shield"],
-    ["C", "ECM", ["Screamer", 10, 10]],
+    ["R", "ECM", ["None", 0, 0], ["Screamer", 10, 10]],
     ["N", "Stealth"],
     ["C", "Misc", ["Targeting computer", 10, 10], ["Exploration suite", 50, 25], ["Exploration suite, large", 100, 50], ["Workshop", 50, 25], ["Spaced Plating", 0, 0]]
 ]
 
+# Artillery, Sniper, Brawler, Ordnance, Carrier, Boarding, Sensors, Sprint, Armour, Umbrella, Shield, ECM, Stealth, Manouvre, FTL
+
+parts_stats = [
+    ["A", "Artillery"],
+    ["A", "Sniper", ["Skirmish Autocannons", 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Brawler", ["Autocannons", 0,0,0.5,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannons", 0,0,1,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,1,2,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,2,2,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
+    ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0]],
+    ["D", "Sprint", ["Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0]],
+    ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0]],
+    ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
+    ["A", "Shield"],
+    ["O", "ECM", ["Screamer", 0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]],
+    ["A", "Stealth"],
+    ["D", "Manouvre", ["Tylium Thrusters", 0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]],
+    ["A", "FTL", ["Jumpdrive", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
+]
 space_number = [0, 50, 110, 180, 260, 350, 450, 560, 680, 810, 950]
 
 
 def update():
+
+    stat_var=[]
+
+    for i in range(0,15):
+        stat_var.append(0)
+
     space_available=0
     power_available=0
     space_used = 0
@@ -52,17 +80,34 @@ def update():
 
     power.configure(text=power_available)
 
+    # Space and Power
+
     for i in range(1, len(parts)):
         if (parts[i][0]) == "N":
             for j in range(len(all[i][0])):
                 space_used += int(all[i][1][j]['text'])*int(all[i][3][j].get())
                 power_used += int(all[i][2][j]['text'])*int(all[i][3][j].get())
+                if all[i][0][j]['text'] == "Nacelle Mount":
+                        hullpoints -= int(size.get())*int(all[i][3][j].get())
+                if all[i][0][j]['text'] == "Open Hangar":
+                        hullpoints -= int(size.get())*int(all[i][3][j].get())
+                for l in range(len(parts_stats)):
+                    for k in range(2,len(parts_stats[l])):
+                        if all[i][0][j]['text'] == parts_stats[l][k][0]:
+                            for p in range(1,16):
+                                stat_var[p-1] += parts_stats[l][k][p]*int(all[i][3][j].get())
+
+
 
         if (parts[i][0]) == "R":
             for j in range(len(all[i][0])):
                 if j == all[i][3].get():
                     space_used += int(all[i][1][j]['text'])*int(size.get())
                     power_used += int(all[i][2][j]['text'])*int(size.get())
+                    if all[i][0][j]['text'] == "Military":
+                        hullpoints += int(size.get())*int(size.get())
+                    if all[i][0][j]['text'] == "Extended DRADIS":
+                        hullpoints -= int(size.get())*int(size.get())
 
         if (parts[i][0]) == "C":
             for j in range(len(all[i][0])):
@@ -73,13 +118,20 @@ def update():
                     space_used += int(all[i][1][j]['text'])
                     power_used += int(all[i][2][j]['text'])
 
+
+
+    for i in range(0,len(stat_var)):
+        if parts_stats[i][0] == "D":
+            stat_var[i] = floor(int(stat_var[i])/int(size.get()))
+        stats[i].configure(text=int(stat_var[i]))
+
     space_cost.configure(text=space_used)
     power_cost.configure(text=power_used)
     hull.configure(text=hullpoints)
 
 # Size
 
-size_label = Label(window, text="Size:")
+size_label = Label(window, text="Size")
 size_label.grid(column=0, row=0, sticky=W)
 
 space_var = IntVar()
@@ -151,7 +203,7 @@ for i in range(len(parts)):
             list[1].append(Label(window, text=parts[i][j][1]))
             list[2].append(Label(window, text=parts[i][j][2]))
             list[4].append(IntVar())
-            list[3].append(Spinbox(window, from_=0, to=100, width=5, command=update, textvariable=list[4][-1]))
+            list[3].append(Spinbox(window, from_=0, to=1000, width=5, command=update, textvariable=list[4][-1]))
 
         for j in range(len(list[0])):
             row+=1
@@ -205,5 +257,28 @@ for i in range(len(parts)):
             list[2][j].grid(column=column+2, row=row, sticky=W)
 
         all.append(list)
+
+# Blanks
+
+blanks = []
+
+for i in range(10):
+    blanks.append(Label(window, text="    "))
+    blanks[i].grid(column=column+i, row=2)
+
+
+# Stats
+
+column += 6
+row=3
+
+stats = []
+
+for i in range(len(parts_stats)):
+    row += 1
+    label = Label(window, text=parts_stats[i][1], background="gray")
+    label.grid(column=column, row=row, sticky=W)
+    stats.append(Label(window, text="0"))
+    stats[i].grid(column=column+1, row=row, sticky=W)
 
 window.mainloop()
