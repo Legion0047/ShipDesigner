@@ -46,7 +46,7 @@ parts_stats = [
     ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
     ["A", "Shield"],
     ["O", "ECM", ["Screamer", 0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]],
-    ["A", "Stealth"],
+    ["O", "Stealth"],
     ["D", "Manouvre", ["Tylium Thrusters", 0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]],
     ["A", "FTL", ["Jumpdrive", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
 ]
@@ -60,13 +60,13 @@ def update():
     for i in range(0,15):
         stat_var.append(0)
 
-    space_available=0
     power_available=0
     space_used = 0
     power_used = 0
-    hullpoints = 0
 
-    space_available = space_number[int(size.get())]
+    space_available = int(space_number[int(size.get())]*(1-(0.05*int(prototype_var.get()))))
+    if skill_var.get() == True:
+        space_available += int(size.get())*10
     space.configure(text=space_available)
 
     # Hull points
@@ -83,6 +83,7 @@ def update():
     # Space and Power
 
     for i in range(1, len(parts)):
+
         if (parts[i][0]) == "N":
             for j in range(len(all[i][0])):
                 space_used += int(all[i][1][j]['text'])*int(all[i][3][j].get())
@@ -91,6 +92,7 @@ def update():
                         hullpoints -= int(size.get())*int(all[i][3][j].get())
                 if all[i][0][j]['text'] == "Open Hangar":
                         hullpoints -= int(size.get())*int(all[i][3][j].get())
+                # Stats
                 for l in range(len(parts_stats)):
                     for k in range(2,len(parts_stats[l])):
                         if all[i][0][j]['text'] == parts_stats[l][k][0]:
@@ -108,6 +110,12 @@ def update():
                         hullpoints += int(size.get())*int(size.get())
                     if all[i][0][j]['text'] == "Extended DRADIS":
                         hullpoints -= int(size.get())*int(size.get())
+                    # Stats
+                    for l in range(len(parts_stats)):
+                        for k in range(2,len(parts_stats[l])):
+                            if all[i][0][j]['text'] == parts_stats[l][k][0]:
+                                for p in range(1,16):
+                                    stat_var[p-1] += parts_stats[l][k][p]
 
         if (parts[i][0]) == "C":
             for j in range(len(all[i][0])):
@@ -121,7 +129,7 @@ def update():
 
 
     for i in range(0,len(stat_var)):
-        if parts_stats[i][0] == "D":
+        if parts_stats[i][0] == "D"and int(size.get()) != 0:
             stat_var[i] = floor(int(stat_var[i])/int(size.get()))
         stats[i].configure(text=int(stat_var[i]))
 
@@ -138,48 +146,60 @@ space_var = IntVar()
 space_var.set(0)
 
 size = Spinbox(window, from_=1, to=100, width=5, command=update, textvariable=space_var)
-# size.current(0) #set the selected item
 size.grid(column=0, row=1, sticky=W)
+
+# Skill
+
+skill_var = BooleanVar()
+skill = Checkbutton(window, text="skill", command=update, var=skill_var)
+skill.grid(column=0, row=2, sticky=W)
+
+# Prototype
+
+name_label = Label(window, text="Prototype")
+name_label.grid(column=1, row=0, sticky=W)
+
+prototype_var = IntVar()
+prototype = Spinbox(window, from_=0, to=1000, width=5, command=update, textvariable=prototype_var)
+prototype.grid(column=1, row=1, sticky=W)
 
 # Space
 
 space_label = Label(window, text="Space")
-space_label.grid(column=1, row=0, sticky=W)
+space_label.grid(column=2, row=0, sticky=W)
 
 space = Label(window, text=0)
-space.grid(column=1, row=1, sticky=W)
+space.grid(column=2, row=1, sticky=W)
 
 space_cost = Label(window, text=0)
-space_cost.grid(column=1, row=2, sticky=W)
+space_cost.grid(column=2, row=2, sticky=W)
 
 # Power
 
 power_label = Label(window, text="Power")
-power_label.grid(column=2, row=0, sticky=W)
+power_label.grid(column=3, row=0, sticky=W)
 
 power = Label(window, text=0)
-power.grid(column=2, row=1, sticky=W)
+power.grid(column=3, row=1, sticky=W)
 
 power_cost = Label(window, text=0)
-power_cost.grid(column=2, row=2, sticky=W)
+power_cost.grid(column=3, row=2, sticky=W)
 
 # Hull points
 
 hull_label = Label(window, text="Hull points")
-hull_label.grid(column=3, row=0, sticky=W)
+hull_label.grid(column=4, row=0, sticky=W)
 
 hull = Label(window, text=0)
-hull.grid(column=3, row=1, sticky=W)
+hull.grid(column=4, row=1, sticky=W)
 
 # Name
 
 name_label = Label(window, text="Name")
-name_label.grid(column=4, row=0, sticky=W)
+name_label.grid(column=5, row=0, sticky=W)
 
 name = Entry(window, width=10)
-name.grid(column=4, row=1, sticky=W)
-
-
+name.grid(column=5, row=1, sticky=W)
 
 row=3
 column=0
