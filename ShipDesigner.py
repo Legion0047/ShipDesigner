@@ -33,6 +33,8 @@ parts = [
 
 # Artillery, Sniper, Brawler, Ordnance, Carrier, Boarding, Sensors, Sprint, Armour, Umbrella, Shield, ECM, Stealth, Manouvre, FTL
 
+# A= , D = Division, O = Once
+
 parts_stats = [
     ["A", "Artillery"],
     ["A", "Sniper", ["Skirmish Autocannons", 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]],
