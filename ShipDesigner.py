@@ -18,7 +18,7 @@ parts = [
     ["N", "FTL", ["Jumpdrive", 8, 10]],
     ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2]],
     ["N", "Artillery"],
-    ["N", "Sniper", ["Skirmish Autocannons", 3, 1, 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["N", "Sniper", ["Skirmish Autocannons", 3, 1]],
     ["N", "Brawler", ["Autocannons", 2, 0], ["High Impact Cannons", 3, 0], ["Artillery", 4, 0], ["Heavy Artillery cannon", 5, 0]],
     ["N", "Ordenance", ["Ordnance launcher", 3, 0], ["Ordnance Locker", 1, 0]],
     ["N", "Carrier", ["Open Hangar", 5, 0], ["Launch tubes", 5, 2], ["Flight Pod", 20, 0]],
@@ -52,6 +52,48 @@ parts_stats = [
 ]
 
 space_number = [0, 50, 110, 180, 260, 350, 450, 560, 680, 810, 950, 1110, 1280, 1460, 1650, 1850]
+
+def print_to_file():
+    if(name.get() != ""):
+        f = open(name.get()+".txt", 'w')
+        f.write('%s\n' % (name.get()))
+
+        f.write("\n")
+
+        f.write("Size: %i\n" % int(size.get()))
+        f.write("Hullpoints: %i\n" % int(hull['text']))
+        f.write("Space: %i\n" % int(space_cost['text']))
+        f.write("power: %i\n" % int(power_cost['text']))
+
+        f.write("\n")
+
+        for i in range(len(parts)):
+            f.write("%s\n" % parts[i][1])
+            for j in range(2, len(parts[i])):
+                if parts[i][0] == "N":
+                    f.write("%ix %s" % (all[i][4][j-2].get(),parts[i][j][0]))
+                    if j<(len(parts[i])-1):
+                        f.write(", ")
+                    else:
+                        f.write("\n")
+
+                elif parts[i][0] == "R":
+                    if int(all[i][3].get()) == j-2:
+                        f.write("%ix %s\n" % (int(size.get()),parts[i][j][0]))
+
+                elif parts[i][0] == "C":
+                    if all[i][3][j-2].get() == True:
+                        f.write("1x %s" % (parts[i][j][0]))
+                        if j<len(parts[i]):
+                            f.write(", ")
+                        else:
+                            f.write("\n")
+
+        f.write("\n")
+        for i in range(0, len(stats)):
+            f.write("%ix %s\n" % (stats[i]['text'], parts_stats[i][1]))
+
+        f.close()
 
 def update():
 
@@ -135,10 +177,10 @@ def update():
                     space_used += int(all[i][1][j]['text'])
                     power_used += int(all[i][2][j]['text'])
 
-
+    # Stats
 
     for i in range(0,len(stat_var)):
-        if parts_stats[i][0] == "D"and int(size.get()) != 0:
+        if parts_stats[i][0] == "D" and int(size.get()) != 0:
             stat_var[i] = floor(int(stat_var[i])/int(size.get()))
         stats[i].configure(text=int(stat_var[i]))
 
@@ -214,6 +256,10 @@ name_label.grid(column=5, row=0, sticky=W)
 
 name = Entry(window, width=10)
 name.grid(column=5, row=1, sticky=W)
+
+# Print
+print_btn = Button(window, text="print", command=print_to_file)
+print_btn.grid(column=6, row=0, sticky=W)
 
 row=3
 column=0
