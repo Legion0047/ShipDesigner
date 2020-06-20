@@ -33,8 +33,6 @@ parts = [
 
 # Artillery, Sniper, Brawler, Ordnance, Carrier, Boarding, Sensors, Sprint, Armour, Umbrella, Shield, ECM, Stealth, Manouvre, FTL
 
-# A= , D = Division, O = Once
-
 parts_stats = [
     ["A", "Artillery"],
     ["A", "Sniper", ["Skirmish Autocannons", 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]],
@@ -52,8 +50,8 @@ parts_stats = [
     ["D", "Manouvre", ["Tylium Thrusters", 0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]],
     ["A", "FTL", ["Jumpdrive", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
 ]
-space_number = [0, 50, 110, 180, 260, 350, 450, 560, 680, 810, 950]
 
+space_number = [0, 50, 110, 180, 260, 350, 450, 560, 680, 810, 950, 1110, 1280, 1460, 1650, 1850]
 
 def update():
 
@@ -65,6 +63,12 @@ def update():
     power_available=0
     space_used = 0
     power_used = 0
+
+    # Scale
+    text = "%i - %im" % ((int(size.get())*200),((int(size.get())+1)*200))
+    scale_label.configure(text=text)
+
+    # Skill
 
     space_available = int(space_number[int(size.get())]*(1-(0.05*int(prototype_var.get()))))
     if skill_var.get() == True:
@@ -81,6 +85,9 @@ def update():
         power_available += int(all[0][2][i]['text'])*int(all[0][3][i].get())
 
     power.configure(text=power_available)
+
+    # Flight pods
+    all[11][3][2].set(int(int(all[11][3][1].get())/4))
 
     # Space and Power
 
@@ -150,11 +157,16 @@ space_var.set(0)
 size = Spinbox(window, from_=1, to=100, width=5, command=update, textvariable=space_var)
 size.grid(column=0, row=1, sticky=W)
 
+# scale
+
+scale_label = Label(window, text="0-200m")
+scale_label.grid(column=0, row=2, sticky=W)
+
 # Skill
 
 skill_var = BooleanVar()
 skill = Checkbutton(window, text="skill", command=update, var=skill_var)
-skill.grid(column=0, row=2, sticky=W)
+skill.grid(column=1, row=2, sticky=W)
 
 # Prototype
 
