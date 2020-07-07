@@ -26,7 +26,7 @@ parts = [
     ["N", "Armour", ["Armour Plating", 1, 0]],
     ["N", "Umbrella", ["Point Defense", 1, 0], ["Sprint missiles", 2, 0]],
     ["N", "Shield"],
-    ["R", "ECM", ["None", 0, 0], ["Screamer", 10, 10]],
+    ["R", "ECM", ["None", 0, 0], ["Screamer", 4, 8]],
     ["N", "Stealth"],
     ["C", "Misc", ["Targeting computer", 10, 10], ["Exploration suite", 50, 25], ["Exploration suite, large", 100, 50], ["Workshop", 50, 25], ["Spaced Plating", 0, 0]]
 ]
@@ -129,6 +129,7 @@ def update():
     power.configure(text=power_available)
 
     # Flight pods
+
     all[11][3][2].set(int(int(all[11][3][1].get())/4))
 
     # Space and Power
@@ -149,8 +150,6 @@ def update():
                         if all[i][0][j]['text'] == parts_stats[l][k][0]:
                             for p in range(1,16):
                                 stat_var[p-1] += parts_stats[l][k][p]*int(all[i][3][j].get())
-
-
 
         if (parts[i][0]) == "R":
             for j in range(len(all[i][0])):
