@@ -10,24 +10,24 @@ window.title("Ship Designer")
 # N = Normal, R = Radialbuttons, C = Checkboxes
 
 parts = [
-    ["N", "Reactor", ["Battery Pack", 1, 2], ["Mini", 10, 10], ["Default", 25, 50], ["Mega", 50, 150]],
-    ["R", "Live Support", ["Budget", 3, 1], ["Military", 4, 2]],
+    ["N", "Reactor", ["Battery Pack", 1, 3], ["Mini", 8, 10], ["Default", 20, 50], ["Mega", 40, 150]],
+    ["R", "Live Support", ["Budget", 4, 2], ["Military", 7, 4]],
     ["R", "Artificial Gravity", ["None", 0, 0], ["Budget", 5, 10]],
     ["N", "Engines", ["Tylium Torch", 3, 5], ["Nacelle Mount", 3, 5]],
     ["N", "Thrusters", ["Tylium Thrusters", 2, 4]],
-    ["N", "FTL", ["Jumpdrive", 8, 10]],
-    ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2]],
-    ["N", "Artillery"],
-    ["N", "Sniper", ["Skirmish Autocannons", 3, 1]],
-    ["N", "Brawler", ["Autocannons", 2, 0], ["High Impact Cannons", 3, 0], ["Artillery", 4, 0], ["Heavy Artillery cannon", 5, 0]],
+    ["N", "FTL", ["Jumpdrive", 6, 8]],
+    ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2], ["LDRADIS", 6, 5]],
+    ["N", "Artillery", ["Zeus Laser Artillery", 50, 75]],
+    ["N", "Sniper", ["Skirmish Autocannons", 3, 2]],
+    ["N", "Brawler", ["Autocannons", 2, 1], ["High Impact Cannons", 3, 1], ["Artillery", 4, 1], ["Heavy Artillery cannon", 5, 1]],
     ["N", "Ordenance", ["Ordnance launcher", 3, 0], ["Ordnance Locker", 1, 0]],
-    ["N", "Carrier", ["Open Hangar", 5, 0], ["Launch tubes", 5, 2], ["Flight Pod", 20, 0]],
-    ["N", "Boarding", ["Marine Quarters", 5, 0]],
+    ["N", "Carrier", ["Open Hangar", 5, 0], ["Launch tubes", 5, 2], ["Flight Pod", 15, 0]],
+    ["N", "Boarding", ["Marine Quarters", 5, 0], ["PA Rack", 2, 2]],
     ["N", "Armour", ["Armour Plating", 1, 0]],
     ["N", "Umbrella", ["Point Defense", 1, 0], ["Sprint missiles", 2, 0]],
     ["N", "Shield"],
     ["R", "ECM", ["None", 0, 0], ["Screamer", 4, 8]],
-    ["N", "Stealth"],
+    ["R", "Stealth", ["None", 0, 0], ["Heatsinks", 5, 0]],
     ["C", "Misc", ["Targeting computer", 10, 10], ["Exploration suite", 50, 25], ["Exploration suite, large", 100, 50], ["Workshop", 50, 25], ["Spaced Plating", 0, 0]]
 ]
 
@@ -35,18 +35,18 @@ parts = [
 
 parts_stats = [
     ["A", "Artillery"],
-    ["A", "Sniper", ["Skirmish Autocannons", 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0]],
-    ["A", "Brawler", ["Autocannons", 0,0,0.5,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannons", 0,0,1,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,1,2,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,2,2,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Sniper", ["Skirmish Autocannons", 0,3,0,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Brawler", ["Autocannons", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannons", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,3,1,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,3,2,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
-    ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
-    ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0]],
+    ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0], ["PA Rack", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
+    ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0], ["LDRADIS", 0,0,0,0,0,0,5,0,0,0,0,0,0,0,0]],
     ["D", "Sprint", ["Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0]],
     ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0]],
     ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
     ["A", "Shield"],
     ["O", "ECM", ["Screamer", 0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]],
-    ["O", "Stealth"],
+    ["O", "Stealth", ["Heatsinks", 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0]],
     ["D", "Manouvre", ["Tylium Thrusters", 0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]],
     ["A", "FTL", ["Jumpdrive", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
 ]
@@ -160,6 +160,8 @@ def update():
                         hullpoints += int(size.get())*int(size.get())
                     if all[i][0][j]['text'] == "Extended DRADIS":
                         hullpoints -= int(size.get())*int(size.get())
+                    if all[i][0][j]['text'] == "LDRADIS":
+                        hullpoints -= int(size.get())*int(size.get())*2
                     # Stats
                     for l in range(len(parts_stats)):
                         for k in range(2,len(parts_stats[l])):
