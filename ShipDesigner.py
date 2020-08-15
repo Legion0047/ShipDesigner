@@ -34,7 +34,7 @@ parts = [
 # Artillery, Sniper, Brawler, Ordnance, Carrier, Boarding, Sensors, Sprint, Armour, Umbrella, Shield, ECM, Stealth, Manouvre, FTL
 
 parts_stats = [
-    ["A", "Artillery"],
+    ["A", "Artillery", ["Zeus Laser Artillery", 25,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Sniper", ["Skirmish Autocannons", 0,3,0,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Brawler", ["Autocannons", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannons", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,3,1,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,3,2,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
@@ -51,7 +51,11 @@ parts_stats = [
     ["A", "FTL", ["Jumpdrive", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
 ]
 
-space_number = [0, 50, 110, 180, 260, 350, 450, 560, 680, 810, 950, 1110, 1280, 1460, 1650, 1850]
+space_number = [0]
+for i in range(0,50):
+    space_number.append(space_number[len(space_number)-1]+50+(10*i))
+
+print(space_number)
 
 def print_to_file():
     if(name.get() != ""):
