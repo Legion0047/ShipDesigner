@@ -52,10 +52,8 @@ parts_stats = [
 ]
 
 space_number = [0]
-for i in range(0,50):
+for i in range(0,100):
     space_number.append(space_number[len(space_number)-1]+50+(10*i))
-
-print(space_number)
 
 def print_to_file():
     if(name.get() != ""):
@@ -67,7 +65,7 @@ def print_to_file():
         f.write("Size: %i\n" % int(size.get()))
         f.write("Hullpoints: %i\n" % int(hull['text']))
         f.write("Space: %i\n" % int(space_cost['text']))
-        f.write("power: %i\n" % int(power_cost['text']))
+        f.write("power: %i/%i\n" % (int(power_cost['text'], int(power['text']))))
 
         f.write("\n")
 
@@ -119,6 +117,11 @@ def update():
     space_available = int(space_number[int(size.get())]*(1-(0.05*int(prototype_var.get()))))
     if skill_var.get() == True:
         space_available += int(size.get())*10
+
+    # Station
+
+    if station.get() == True:
+        space_available += space_available
     space.configure(text=space_available)
 
     # Hull points
@@ -148,6 +151,9 @@ def update():
                         hullpoints -= int(size.get())*int(all[i][3][j].get())
                 if all[i][0][j]['text'] == "Open Hangar":
                         hullpoints -= int(size.get())*int(all[i][3][j].get())
+                if all[i][0][j]['text'] == "Jumpdrive" and station.get() == True:
+                    space_used += int(all[i][1][j]['text'])*int(all[i][3][j].get())*9
+                    power_used += int(all[i][2][j]['text'])*int(all[i][3][j].get())*9
                 # Stats
                 for l in range(len(parts_stats)):
                     for k in range(2,len(parts_stats[l])):
@@ -171,7 +177,10 @@ def update():
                         for k in range(2,len(parts_stats[l])):
                             if all[i][0][j]['text'] == parts_stats[l][k][0]:
                                 for p in range(1,16):
-                                    stat_var[p-1] += parts_stats[l][k][p]
+                                    if station.get() == True:
+                                        stat_var[p-1] += parts_stats[l][k][p]*int(size.get())
+                                    else:
+                                        stat_var[p-1] += parts_stats[l][k][p]
 
         if (parts[i][0]) == "C":
             for j in range(len(all[i][0])):
@@ -266,6 +275,11 @@ name.grid(column=5, row=1, sticky=W)
 print_btn = Button(window, text="print", command=print_to_file)
 print_btn.grid(column=6, row=0, sticky=W)
 
+# Station
+station = BooleanVar()
+station_cbt = Checkbutton(window, text="station", command=update, var=station)
+station_cbt.grid(column=6, row=1, sticky=W)
+
 row=3
 column=0
 
@@ -288,7 +302,7 @@ for i in range(len(parts)):
             list[1].append(Label(window, text=parts[i][j][1]))
             list[2].append(Label(window, text=parts[i][j][2]))
             list[4].append(IntVar())
-            list[3].append(Spinbox(window, from_=0, to=1000, width=5, command=update, textvariable=list[4][-1]))
+            list[3].append(Spinbox(window, from_=0, to=10000, width=5, command=update, textvariable=list[4][-1]))
 
         for j in range(len(list[0])):
             row+=1
