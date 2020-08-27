@@ -195,7 +195,7 @@ def update():
 
     for i in range(0,len(stat_var)):
         if parts_stats[i][0] == "D" and int(size.get()) != 0:
-            stat_var[i] = floor(int(stat_var[i])/int(size.get()))
+            stat_var[i] = floor(float(stat_var[i])/float(size.get()))
         stats[i].configure(text=int(stat_var[i]))
 
     space_cost.configure(text=space_used)
