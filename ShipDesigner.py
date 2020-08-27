@@ -65,7 +65,7 @@ def print_to_file():
         f.write("Size: %i\n" % int(size.get()))
         f.write("Hullpoints: %i\n" % int(hull['text']))
         f.write("Space: %i\n" % int(space_cost['text']))
-        f.write("power: %i/%i\n" % (int(power_cost['text'], int(power['text']))))
+        f.write("power: %i/%i\n" % (int(power_cost['text']), int(power['text'])))
 
         f.write("\n")
 
