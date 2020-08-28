@@ -12,9 +12,9 @@ window.title("Ship Designer")
 parts = [
     ["N", "Reactor", ["Battery Pack", 1, 3], ["Mini", 8, 10], ["Default", 20, 50], ["Mega", 40, 150]],
     ["R", "Live Support", ["Budget", 4, 2], ["Military", 7, 4]],
-    ["R", "Artificial Gravity", ["None", 0, 0], ["Budget", 5, 10]],
-    ["N", "Engines", ["Tylium Torch", 3, 5], ["Nacelle Mount", 3, 5]],
-    ["N", "Thrusters", ["Tylium Thrusters", 2, 4]],
+    ["R", "Artificial Gravity", ["None", 0, 0], ["Budget", 4, 6]],
+    ["N", "Engines", ["Tylium Torch", 2, 4], ["Nacelle Mount", 2, 4], ["Ion Engine", 4, 2]],
+    ["N", "Thrusters", ["Tylium Thrusters", 2, 3]],
     ["N", "FTL", ["Jumpdrive", 6, 8]],
     ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2], ["LDRADIS", 6, 5]],
     ["N", "Artillery", ["Zeus Laser Artillery", 50, 75]],
@@ -27,8 +27,8 @@ parts = [
     ["N", "Umbrella", ["Point Defense", 1, 0], ["Sprint missiles", 2, 0]],
     ["N", "Shield"],
     ["R", "ECM", ["None", 0, 0], ["Screamer", 4, 8]],
-    ["R", "Stealth", ["None", 0, 0], ["Heatsinks", 5, 0]],
-    ["C", "Misc", ["Targeting computer", 10, 10], ["Exploration suite", 50, 25], ["Exploration suite, large", 100, 50], ["Workshop", 50, 25], ["Spaced Plating", 0, 0]]
+    ["R", "Stealth", ["None", 0, 0], ["Heatsinks", 5, 0], ["Stealth Coating", 10, 0], ["Heatsink+Stealth Coating", 15, 0]],
+    ["C", "Misc", ["Targeting computer", 10, 10], ["Exploration suite", 50, 25], ["Exploration suite, large", 100, 50], ["Repair Drones", 50, 10], ["Spaced Plating", 0, 0]]
 ]
 
 # Artillery, Sniper, Brawler, Ordnance, Carrier, Boarding, Sensors, Sprint, Armour, Umbrella, Shield, ECM, Stealth, Manouvre, FTL
@@ -41,12 +41,12 @@ parts_stats = [
     ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0], ["PA Rack", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
     ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0], ["LDRADIS", 0,0,0,0,0,0,5,0,0,0,0,0,0,0,0]],
-    ["D", "Sprint", ["Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0]],
+    ["D", "Sprint", ["Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0], ["Ion Engine", 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]],
     ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0]],
     ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
     ["A", "Shield"],
     ["O", "ECM", ["Screamer", 0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]],
-    ["O", "Stealth", ["Heatsinks", 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0]],
+    ["O", "Stealth", ["Heatsinks", 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0], ["Stealth Coating", 0,0,0,0,0,0,0,0,0,0,0,0,2,0,0], ["Heatsinks+Stealth Coating", 0,0,0,0,0,0,0,0,0,0,0,0,3,0,0]],
     ["D", "Manouvre", ["Tylium Thrusters", 0,0,0,0,0,0,0,0,0,0,0,0,0,2,0]],
     ["A", "FTL", ["Jumpdrive", 0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]]
 ]
