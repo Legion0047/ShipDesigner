@@ -116,7 +116,7 @@ def update():
 
     space_available = int(space_number[int(size.get())]*(1-(0.05*int(prototype_var.get()))))
     if skill_var.get() == True:
-        space_available += int(size.get())*10
+        space_available += int(size.get())*25
 
     # Station
 
