@@ -136,8 +136,8 @@ def update():
     power.configure(text=power_available)
 
     # Flight pods
-
-    all[11][3][2].set(int(int(all[11][3][1].get())/4))
+    if int(all[11][3][1].get()) != 0:
+        all[11][3][2].set(int((int(all[11][3][1].get())-1)/4)+1)
 
     # Space and Power
 
