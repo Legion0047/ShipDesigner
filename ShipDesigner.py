@@ -27,7 +27,7 @@ parts = [
     ["N", "Umbrella", ["Point Defense", 1, 0], ["Sprint missiles", 2, 0]],
     ["N", "Shield"],
     ["R", "ECM", ["None", 0, 0], ["Screamer", 4, 8]],
-    ["R", "Stealth", ["None", 0, 0], ["Heatsinks", 5, 0], ["Stealth Coating", 10, 0], ["Heatsink+Stealth Coating", 15, 0]],
+    ["R", "Stealth", ["None", 0, 0], ["Heatsinks", 5, 0], ["Stealth Coating", 10, 0], ["Heatsinks+Stealth Coating", 15, 0]],
     ["C", "Misc", ["Targeting computer", 10, 10], ["Exploration suite", 50, 25], ["Exploration suite, large", 100, 50], ["Repair Drones", 50, 10], ["Spaced Plating", 0, 0]]
 ]
 
@@ -36,13 +36,13 @@ parts = [
 parts_stats = [
     ["A", "Artillery", ["Zeus Laser Artillery", 25,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Sniper", ["Skirmish Autocannons", 0,3,0,0,0,0,0,0,0,0,0,0,0,0,0]],
-    ["A", "Brawler", ["Autocannons", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannons", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,3,1,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,3,2,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Brawler", ["Autocannons", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannons", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,1,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,2,3,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0], ["PA Rack", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
     ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0], ["LDRADIS", 0,0,0,0,0,0,5,0,0,0,0,0,0,0,0]],
     ["D", "Sprint", ["Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0], ["Ion Engine", 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]],
-    ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0]],
+    ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1.5,0,0,0,0,0,0]],
     ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
     ["A", "Shield"],
     ["O", "ECM", ["Screamer", 0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]],
@@ -126,7 +126,7 @@ def update():
 
     # Hull points
 
-    hullpoints = int(size.get())*12+int(all[13][3][0].get())
+    hullpoints = int(size.get())*10+int(all[13][3][0].get()*1.5)
 
     # Reactor
     for i in range(len(all[0][0])):
