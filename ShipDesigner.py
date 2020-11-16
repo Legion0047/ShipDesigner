@@ -126,7 +126,7 @@ def update():
 
     # Hull points
 
-    hullpoints = int(size.get())*10+int(all[13][3][0].get()*1.5)
+    hullpoints = int(size.get())*12+int(all[13][3][0].get()*1.5)
 
     # Reactor
     for i in range(len(all[0][0])):
