@@ -35,7 +35,7 @@ parts = [
 
 parts_stats = [
     ["A", "Artillery", ["Zeus Laser Artillery", 25,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
-    ["A", "Sniper", ["Skirmish Autocannon", 0,3,0,0,0,0,0,0,0,0,0,0,0,0,0], ["Skirmish Autocannon", 0,15,0,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Sniper", ["Skirmish Autocannon", 0,3,0,0,0,0,0,0,0,0,0,0,0,0,0], ["Thunderbolt Laser Turret", 0,15,0,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Brawler", ["Autocannon", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannon", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,1,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,2,3,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
