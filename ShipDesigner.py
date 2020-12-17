@@ -12,19 +12,19 @@ window.title("Ship Designer")
 parts = [
     ["N", "Reactor", ["Battery Pack", 1, 3], ["Mini", 8, 10], ["Default", 20, 50], ["Mega", 40, 150]],
     ["R", "Live Support", ["Budget", 4, 2], ["Military", 7, 4]],
-    ["R", "Artificial Gravity", ["None", 0, 0], ["Budget", 4, 6]],
+    ["R", "Artificial Gravity", ["None", 0, 0], ["Budget", 3, 5]],
     ["N", "Engines", ["Tylium Torch", 2, 4], ["Nacelle Mount", 2, 4], ["Ion Engine", 4, 2]],
     ["N", "Thrusters", ["Tylium Thrusters", 2, 3]],
     ["N", "FTL", ["Jumpdrive", 6, 8]],
     ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2], ["LDRADIS", 6, 5]],
     ["N", "Artillery", ["Zeus Laser Artillery", 40, 70]],
     ["N", "Sniper", ["Skirmish Autocannon", 3, 2], ["Thunderbolt Laser Turret", 5, 15]],
-    ["N", "Brawler", ["Autocannon", 2, 1], ["High Impact Cannon", 3, 1], ["Artillery", 4, 1], ["Heavy Artillery cannon", 5, 1]],
+    ["N", "Brawler", ["Autocannon", 2, 1], ["High Impact Cannon", 3, 1], ["Artillery", 4, 1], ["Heavy Artillery cannon", 5, 1], ["Needler Coil Gun", 2, 4]],
     ["N", "Ordenance", ["Ordnance launcher", 3, 0], ["Ordnance Locker", 1, 0]],
     ["N", "Carrier", ["Open Hangar", 5, 0], ["Launch tubes", 5, 2], ["Flight Pod", 15, 0], ["Parasite Collar", 10, 0], ["Parasite Collar (Mothership)", 10, 20]],
     ["N", "Boarding", ["Marine Quarters", 5, 0], ["PA Rack", 2, 2], ["Boarding Pod", 20, 0]],
     ["N", "Armour", ["Armour Plating", 1, 0]],
-    ["N", "Umbrella", ["Point Defense", 1, 0], ["Sprint missiles", 2, 0]],
+    ["N", "Umbrella", ["Point Defense", 1, 0], ["Metalstorm Interceptor", 1, 2], ["Sprint missiles", 2, 0]],
     ["N", "Shield"],
     ["R", "ECM", ["None", 0, 0], ["Screamer", 4, 8]],
     ["R", "Stealth", ["None", 0, 0], ["Heatsinks", 5, 0], ["Stealth Coating", 10, 0], ["Heatsinks+Stealth Coating", 15, 0]],
@@ -36,14 +36,14 @@ parts = [
 parts_stats = [
     ["A", "Artillery", ["Zeus Laser Artillery", 25,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Sniper", ["Skirmish Autocannon", 0,3,0,0,0,0,0,0,0,0,0,0,0,0,0], ["Thunderbolt Laser Turret", 0,15,0,0,0,0,0,0,0,0,0,0,0,0,0]],
-    ["A", "Brawler", ["Autocannon", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannon", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,1,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,2,3,0,0,0,0,0,0,0,0,0,0,0,0]],
+    ["A", "Brawler", ["Autocannon", 0,0,2,0,0,0,0,0,0,0.5,0,0,0,0,0], ["High Impact Cannon", 0,0,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Artillery", 0,1,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Heavy Artillery cannon", 0,2,3,0,0,0,0,0,0,0,0,0,0,0,0], ["Needler Coil Gun", 0,0.5,4,0,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0], ["PA Rack", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
     ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0], ["LDRADIS", 0,0,0,0,0,0,5,0,0,0,0,0,0,0,0]],
     ["D", "Sprint", ["Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0], ["Ion Engine", 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]],
     ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1.5,0,0,0,0,0,0]],
-    ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
+    ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1,0,0,0,0,0], ["Metalstorm Interceptor", 0,0,0,0,0,0,0,0,0,2,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
     ["A", "Shield"],
     ["O", "ECM", ["Screamer", 0,0,0,0,0,0,0,0,0,0,0,1,0,0,0]],
     ["O", "Stealth", ["Heatsinks", 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0], ["Stealth Coating", 0,0,0,0,0,0,0,0,0,0,0,0,2,0,0], ["Heatsinks+Stealth Coating", 0,0,0,0,0,0,0,0,0,0,0,0,3,0,0]],
@@ -138,6 +138,10 @@ def update():
     # Flight pods
     if int(all[11][3][1].get()) != 0:
         all[11][3][2].set(int((int(all[11][3][1].get())-1)/4)+1)
+
+    # Parasites
+    if int(all[11][3][4].get()) > int((int(size.get())/3)):
+        all[11][3][4].set(int((int(size.get())/3)))
 
     # Space and Power
 
