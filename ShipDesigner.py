@@ -16,7 +16,7 @@ parts = [
     ["N", "Engines", ["Nova-Stream Tylium Torch", 2, 4], ["Nacelle Mount", 2, 4], ["Ion Engine", 4, 2]],
     ["N", "Thrusters", ["Tylium Thrusters", 2, 3]],
     ["N", "FTL", ["Skipping Rock Jump Drive", 10, 10]],
-    ["R", "Sensors", ["DRADIS", 3, 2], ["Extended DRADIS", 3, 2], ["LDRADIS", 6, 5]],
+    ["R", "Sensors", ["DRADIS-Array", 3, 2], ["LDRADIS", 6, 5]],
     ["N", "Artillery", ["Zeus Laser Artillery", 35, 60], ["Chronos Siege Laser Artillery", 100, 150]],
     ["N", "Sniper", ["Skirmish Autocannon", 5, 5], ["Thunderbolt Laser Turret", 5, 10]],
     ["N", "Brawler", ["Stinger Autocannon", 3, 2], ["Riptide High Impact Cannon", 5, 2], ["Buster Artillery", 7, 2], ["Hel Heavy Artillery cannon", 9, 2], ["Needler Coil Gun", 2, 4], ["Glare Combat Laser", 2, 4], ["Hephaestus Assault Cannon", 70, 410]],
@@ -40,7 +40,7 @@ parts_stats = [
     ["A", "Ordenance", ["Ordnance launcher", 0,0,0,1,0,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Carrier", ["Open Hangar", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0], ["Launch tubes", 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]],
     ["A", "Boarding", ["Marine Quarters", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0], ["PA Rack", 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]],
-    ["O", "Sensors", ["DRADIS", 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0], ["Extended DRADIS", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0], ["LDRADIS", 0,0,0,0,0,0,5,0,0,0,0,0,0,0,0]],
+    ["O", "Sensors", ["DRADIS-Array", 0,0,0,0,0,0,3,0,0,0,0,0,0,0,0], ["LDRADIS", 0,0,0,0,0,0,5,0,0,0,0,0,0,0,0]],
     ["D", "Sprint", ["Nova-Stream Tylium Torch", 0,0,0,0,0,0,0,2,0,0,0,0,0,0,0], ["Nacelle Mount", 0,0,0,0,0,0,0,2,0,0,0,0,0,1,0], ["Ion Engine", 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]],
     ["D", "Armour", ["Armour Plating", 0,0,0,0,0,0,0,0,1.5,0,0,0,0,0,0]],
     ["D", "Umbrella", ["Point Defense", 0,0,0,0,0,0,0,0,0,1.5,0,0,0,0,0], ["Metalstorm Interceptor", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0], ["Sprint missiles", 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0]],
@@ -53,7 +53,7 @@ parts_stats = [
 
 space_number = [0]
 for i in range(0,100):
-    space_number.append(space_number[len(space_number)-1]+50+(10*i))
+    space_number.append(space_number[len(space_number)-1]+(50+i)+(10*i))
 
 def print_to_file():
     if(name.get() != ""):
@@ -172,8 +172,6 @@ def update():
                     power_used += int(all[i][2][j]['text'])*int(size.get())
                     if all[i][0][j]['text'] == "Military":
                         hullpoints += int(size.get())*int(size.get())
-                    if all[i][0][j]['text'] == "Extended DRADIS":
-                        hullpoints -= int(size.get())*int(size.get())
                     if all[i][0][j]['text'] == "LDRADIS":
                         hullpoints -= int(size.get())*int(size.get())*2
                     # Stats
